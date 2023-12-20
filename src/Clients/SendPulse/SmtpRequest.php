@@ -12,7 +12,7 @@ class SmtpRequest extends SendPulseClient
     {
         return $this->post("/smtp/emails", [
             "email" => [
-                "subject" => "Test",
+                "subject" => $emailServiceDTO->subject,
                 "template" => [
                     "id" => $emailServiceDTO->template->id(),
                     "variables" => $emailServiceDTO->template->variables()
