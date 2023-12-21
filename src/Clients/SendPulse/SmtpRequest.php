@@ -21,9 +21,15 @@ class SmtpRequest extends SendPulseClient
                     "name" => Config::get('from.name'),
                     "email" => Config::get('from.email')
                 ],
-                "to" => $emailServiceDTO->to,
-                "cc" => $emailServiceDTO->cc,
-                "bcc" => $emailServiceDTO->bcc
+                "to" => [
+                    ['email' => $emailServiceDTO->to->email(), 'name' => $emailServiceDTO->to->name()]
+                ],
+                "cc" => [
+                    ['email' => $emailServiceDTO->to->email(), 'name' => $emailServiceDTO->to->name()]
+                ],
+                "bcc" => [
+                    ['email' => $emailServiceDTO->to->email(), 'name' => $emailServiceDTO->to->name()]
+                ]
             ]
         ]);
     }

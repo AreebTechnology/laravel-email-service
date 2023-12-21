@@ -2,14 +2,16 @@
 
 namespace Areeb\EmailService\DTO;
 
+use Areeb\EmailService\Contracts\EmailReceiverAble;
+
 class EmailDTO
 {
     public function __construct(
         public string           $subject,
         public EmailTemplateDTO $template,
-        public array            $to,
-        public ?array           $cc = null,
-        public ?array           $bcc = null,
+        public EmailReceiverAble $to,
+        public ?EmailReceiverAble           $cc = null,
+        public ?EmailReceiverAble           $bcc = null,
     ) {
 
     }
@@ -17,9 +19,9 @@ class EmailDTO
     public static function instance(
         string           $subject,
         EmailTemplateDTO $template,
-        array            $to,
-        ?array           $cc = null,
-        ?array           $bcc = null,
+        EmailReceiverAble $to,
+        ?EmailReceiverAble           $cc = null,
+        ?EmailReceiverAble           $bcc = null,
     ): EmailDTO {
         return new self(
             $subject,

@@ -18,6 +18,17 @@ You can publish the config file with:
 php artisan vendor:publish --provider="Areeb\EmailService\EmailServiceServiceProvider" --tag="email-service-config"
 ```
 
+```php
+use Areeb\EmailService\Contracts\EmailReceiverAble;
+use Areeb\EmailService\Traits\HasEmailReceiver;
+
+class User extends Model implements EmailReceiverAble
+{
+    use HasEmailReceiver;
+
+}
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

@@ -12,10 +12,10 @@ class MailServiceChannel
      * Send the given notification.
      *
      * @param mixed $notifiable
-     * @param Notification $notification
+     * @param EmailServiceAble $notification
      * @return void
      */
-    public function send(mixed $notifiable, EmailServiceAble $notification)
+    public function send(mixed $notifiable, EmailServiceAble $notification): void
     {
         app(EmailService::class)->sendEmail($notification->toMailService($notifiable, $notification));
     }
