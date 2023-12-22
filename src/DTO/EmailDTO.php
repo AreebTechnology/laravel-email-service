@@ -78,7 +78,7 @@ class EmailDTO
 
     public function cc(): null|array
     {
-        return $this->ccCollection->add(['email' => $this->cc->email(), 'name' => $this->cc->name()])
+        return $this->ccCollection->add(['email' => $this->cc?->email(), 'name' => $this->cc?->name()])
             ->filter(function ($item) {
                 if (!filter_var($item['email'], FILTER_VALIDATE_EMAIL)) {
                     return false;
@@ -89,7 +89,7 @@ class EmailDTO
 
     public function bcc(): null|array
     {
-        return $this->bccCollection->add(['email' => $this->bcc->email(), 'name' => $this->bcc->name()])
+        return $this->bccCollection->add(['email' => $this->bcc?->email(), 'name' => $this->bcc?->name()])
             ->filter(function ($item) {
                 if (!filter_var($item['email'], FILTER_VALIDATE_EMAIL)) {
                     return false;
