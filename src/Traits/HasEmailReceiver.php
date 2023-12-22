@@ -5,12 +5,12 @@ namespace Areeb\EmailService\Traits;
 trait HasEmailReceiver
 {
 
-    public function email(): string
+    public function emailToEmailService(): string
     {
         return $this->email ?? '';
     }
 
-    public function name(): string
+    public function nameToEmailService(): string
     {
         return $this->name ?? '';
     }
