@@ -10,8 +10,8 @@ class EmailDTO
 {
 
     public Collection $toCollection;
-    public ?Collection $ccCollection = null;
-    public ?Collection $bccCollection = null;
+    public Collection $ccCollection;
+    public Collection $bccCollection;
 
     public function __construct(
         public string             $subject,
@@ -67,7 +67,7 @@ class EmailDTO
 
     public function to(): array
     {
-        return $res = $this->toCollection?->add(['email' => $this->to?->email(), 'name' => $this->to?->name()])
+        return $this->toCollection->add(['email' => $this->to->email(), 'name' => $this->to->name()])
             ->filter(function ($item) {
                 if (!filter_var($item['email'], FILTER_VALIDATE_EMAIL)) {
                     return false;
@@ -78,7 +78,7 @@ class EmailDTO
 
     public function cc(): null|array
     {
-        return $res = $this->ccCollection?->add(['email' => $this->cc?->email(), 'name' => $this->cc?->name()])
+        return $this->ccCollection->add(['email' => $this->cc->email(), 'name' => $this->cc->name()])
             ->filter(function ($item) {
                 if (!filter_var($item['email'], FILTER_VALIDATE_EMAIL)) {
                     return false;
@@ -89,7 +89,7 @@ class EmailDTO
 
     public function bcc(): null|array
     {
-        return $res = $this->bccCollection?->add(['email' => $this->bcc?->email(), 'name' => $this->bcc?->name()])
+        return $this->bccCollection->add(['email' => $this->bcc->email(), 'name' => $this->bcc->name()])
             ->filter(function ($item) {
                 if (!filter_var($item['email'], FILTER_VALIDATE_EMAIL)) {
                     return false;

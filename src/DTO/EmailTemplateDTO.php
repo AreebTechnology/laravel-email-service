@@ -2,7 +2,7 @@
 
 namespace Areeb\EmailService\DTO;
 
-interface EmailTemplateDTO
+interface   EmailTemplateDTO
 {
     public function id(): string;
 
