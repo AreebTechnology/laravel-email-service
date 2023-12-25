@@ -18,7 +18,6 @@ abstract class SendPulseClient
         $this->headers = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'test' => 'Bearer ' . $this->accessToken(),
             'Authorization' => 'Bearer ' . $this->accessToken(),
         ];
 
