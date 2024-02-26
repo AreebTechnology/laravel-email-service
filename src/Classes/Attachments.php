@@ -19,15 +19,10 @@ class Attachments implements Arrayable
         return new self();
     }
 
-    public function addFromUrl($fileName, $fileUrl): self
+    public function addFile($fileName, $fileUrl): self
     {
-        $this->attachments->put($fileName, stream_get_contents($fileUrl));
-        return $this;
-    }
 
-    public function addFromPath($fileName, $filePath): self
-    {
-        $this->attachments->put($fileName, file_get_contents($filePath));
+        $this->attachments->put($fileName, base64_encode(file_get_contents($fileUrl, true)));
         return $this;
     }
 
