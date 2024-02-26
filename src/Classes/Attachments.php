@@ -21,7 +21,6 @@ class Attachments implements Arrayable
 
     public function addFile($fileName, $fileUrl): self
     {
-
         $this->attachments->put($fileName, base64_encode(file_get_contents($fileUrl, true)));
         return $this;
     }

@@ -29,6 +29,53 @@ class User extends Model implements EmailReceiverAble
 }
 ```
 
+```php
+<?php
+
+use Areeb\EmailService\Channels\MailServiceChannel;
+use Areeb\EmailService\Classes\Attachments;
+use Areeb\EmailService\Contracts\EmailServiceAble;
+use Areeb\EmailService\DTO\EmailDTO;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+
+class NotificationClass extends \Illuminate\Auth\Notifications\VerifyEmail implements ShouldQueue, EmailServiceAble
+{
+    use Queueable;
+
+    public function via($notifiable)
+    {
+
+        return [MailServiceChannel::class];
+    }
+
+    protected function buildMailMessage($url)
+    {
+        return (new MailMessage())
+            ->subject('Welcome!')
+            ->markdown('emails.verify', ['url' => $url]);
+    }
+
+    public function toMailService($notifiable, EmailServiceAble $notification): EmailDTO
+    {
+
+        $attachments = Attachments::instance();
+        $attachments -> addFile('test.png',
+            'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
+
+        $emailTemplate = new VerifyEmailTemplate();
+
+        return EmailDTO::instance(
+            subject: __('notification.verify-email'),
+            template: $emailTemplate,
+            to: $notifiable,
+            attachments: $attachments
+        );
+    }
+}
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
