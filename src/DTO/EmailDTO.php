@@ -2,6 +2,7 @@
 
 namespace Areeb\EmailService\DTO;
 
+use Areeb\EmailService\Classes\Attachment;
 use Areeb\EmailService\Classes\Config;
 use Areeb\EmailService\Contracts\EmailReceiverAble;
 use Illuminate\Support\Collection;
@@ -19,6 +20,7 @@ class EmailDTO
         public EmailReceiverAble  $to,
         public ?EmailReceiverAble $cc = null,
         public ?EmailReceiverAble $bcc = null,
+        public ?Attachment        $attachment = null,
     )
     {
         $this->toCollection = collect();
@@ -33,6 +35,7 @@ class EmailDTO
         EmailReceiverAble  $to,
         ?EmailReceiverAble $cc = null,
         ?EmailReceiverAble $bcc = null,
+        ?Attachment        $attachment = null,
     ): EmailDTO
     {
         return new self(
@@ -40,7 +43,8 @@ class EmailDTO
             $template,
             $to,
             $cc,
-            $bcc
+            $bcc,
+            $attachment
         );
     }
 
@@ -96,6 +100,11 @@ class EmailDTO
                 }
                 return true;
             })->toArray();
+    }
+
+    public function attachment(): null|array
+    {
+        return $this->attachment?->toArray();
     }
 
 }
