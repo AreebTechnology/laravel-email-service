@@ -17,7 +17,7 @@ class SmtpRequest extends SendPulseClient
                 "to" => $emailServiceDTO->to(),
                 "cc" => $emailServiceDTO->cc(),
                 "bcc" => $emailServiceDTO->bcc(),
-                "attachment" => $emailServiceDTO->attachment(),
+                "attachments" => $emailServiceDTO->attachments(),
             ]
         ]);
     }

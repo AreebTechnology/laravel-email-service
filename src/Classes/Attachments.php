@@ -5,7 +5,7 @@ namespace Areeb\EmailService\Classes;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 
-class Attachment implements Arrayable
+class Attachments implements Arrayable
 {
     private Collection $attachments;
 
